@@ -60,14 +60,6 @@ public class BlockBreaker extends Block implements ITileEntityProvider{
 	}
 	
 	
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos){
-		if(worldIn.isBlockPowered(pos)){
-			worldIn.setBlockState(pos, state.withProperty(ACTIVATED, Boolean.valueOf(true)),2);
-		}else{
-			worldIn.setBlockState(pos, state.withProperty(ACTIVATED, Boolean.valueOf(false)),2);
-		}
-	}
-	
 	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced){
 		super.addInformation(stack, player, tooltip, advanced);
 		tooltip.add(TextFormatting.AQUA + Util.getLang().localize("blockBreaker.tooltip"));
@@ -133,12 +125,23 @@ public class BlockBreaker extends Block implements ITileEntityProvider{
 	public void breakBlock(World world, BlockPos pos, IBlockState state) {
 		TileEntityBlockBreaker te = (TileEntityBlockBreaker) world.getTileEntity(pos);
 		IItemHandler handler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-		for(int slot = 0; slot < handler.getSlots() - 1; slot++) {
-			ItemStack stack = handler.getStackInSlot(slot);
-			InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
+		for(int slot = 0; slot < 12; slot++) {
+			if(handler.getStackInSlot(slot) != null){
+				ItemStack stack = handler.getStackInSlot(slot);
+				InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
+			}
 		}
 		super.breakBlock(world, pos, state);
 	}
+	
+    @Override
+    public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player){
+        if(!player.capabilities.isCreativeMode){
+            this.dropBlockAsItem(world, pos, state, 0);
+            //dirty workaround because of Forge calling Item.onBlockStartBreak() twice
+            world.setBlockToAir(pos);
+        }
+    }
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
@@ -147,6 +150,7 @@ public class BlockBreaker extends Block implements ITileEntityProvider{
 		}
 		return true;
 	}
+	
 	
 	
 

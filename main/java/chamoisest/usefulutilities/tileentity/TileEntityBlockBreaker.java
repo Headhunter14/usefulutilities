@@ -287,12 +287,8 @@ public class TileEntityBlockBreaker extends TileEntity implements ITickable, ICa
 				&& player.getDistanceSq(this.pos.add(0.5, 0.5, 0.5)) <= 64;
 	}
 
-	/**
-	 * Says that if the block state updates, the tile entity shouldn't get destroyed but should not refresh
-	 */
 	@Override
 	public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate) {
 		return false;
 	}
-
 }
