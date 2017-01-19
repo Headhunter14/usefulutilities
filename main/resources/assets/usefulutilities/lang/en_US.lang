@@ -1,0 +1,27 @@
+#items
+item.copperingot.name=Copper Ingot
+item.copperpickaxe.name=Copper Pickaxe
+item.copperaxe.name=Copper Axe
+item.coppershovel.name=Copper Shovel
+item.copperhoe.name=Copper Hoe
+item.coppersword.name=Copper Sword
+item.healingrod.name=Rod of Healing
+item.healinggem.name=Healing Gem
+item.speedupgrade.name=Speed Upgrade
+item.fortuneupgrade.name=Fortune Upgrade
+item.silktouchupgrade.name=Silk Touch Upgrade
+
+#blocks
+tile.copperore.name=Copper Ore
+tile.blockbreaker.name=Block Breaker
+tile.machineframe.name=Machine Frame
+
+#tooltips
+usefulutilities.itemHealing.tooltip=Heals half a heart for one durability.
+usefulutilities.blockBreaker.tooltip=Breaks the block in front of the block breaker.
+
+#itemgroups
+itemGroup.usefulutilities=Useful Utilities
+
+#Containers
+container.block_breaker=Block Breaker
