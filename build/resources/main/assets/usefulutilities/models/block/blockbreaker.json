@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+       "particle": "usefulutilities:blocks/blockbreakerback", 
+       "north": "usefulutilities:blocks/blockbreakerfront", 
+       "south": "usefulutilities:blocks/blockbreakerback", 
+       "east": "usefulutilities:blocks/blockbreakerside", 
+       "west": "usefulutilities:blocks/blockbreakerside", 
+       "up": "usefulutilities:blocks/blockbreakerback", 
+       "down": "usefulutilities:blocks/blockbreakerback" 
+    }
+}
